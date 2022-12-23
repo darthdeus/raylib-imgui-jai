@@ -18,7 +18,7 @@ generate_bindings :: () -> bool {
 
         #if OS == .WINDOWS {
             output_filename = "windows.jai";
-            lib_name        = "raylib";
+            lib_name        = "rlImGui";
             array_add(*libpaths, "windows");
         } else #if OS == .LINUX {
             output_filename = "linux.jai";
@@ -34,8 +34,8 @@ generate_bindings :: () -> bool {
 
         array_add(*libnames, lib_name);
         array_add(*system_include_paths, GENERATOR_DEFAULT_SYSTEM_INCLUDE_PATH);
-        array_add(*source_files,  "raylib/src/raylib.h");
-        array_add(*extra_clang_arguments, "-x", "c");
+        array_add(*source_files,  "rlImGui/rlImGui.h");
+        array_add(*extra_clang_arguments, "-x", "c", "-isystem", "rlImGui/raylib/src");
         strip_flags = 0;
         // strip_flags &= ~(Strip_Flags.CONSTRUCTORS | .DESTRUCTORS);
     }
